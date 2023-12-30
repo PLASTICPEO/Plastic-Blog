@@ -1,55 +1,20 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import { QueryClient, QueryClientProvider } from "react-query";
 
 import "./index.css";
-import About from "./pages/about/index.tsx";
-import Home from "./pages/home/index.tsx";
-import DefaultLayout from "./layout/index.tsx";
-import AddBlog from "./pages/add-blog/index.tsx";
-import SingleBlog from "./pages/single/index.tsx";
+import App from "./App.tsx";
+import ContextProvider from "./context/ContextProvider.tsx";
+import { BrowserRouter as Router } from "react-router-dom";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: (
-      <DefaultLayout>
-        <Home />
-      </DefaultLayout>
-    ),
-    errorElement: <div>Something wrong...</div>,
-  },
-  {
-    path: "/about",
-    element: (
-      <DefaultLayout>
-        <About />
-      </DefaultLayout>
-    ),
-    errorElement: <div>Something wrong...</div>,
-  },
-  {
-    path: "/add-blog",
-    element: (
-      <DefaultLayout>
-        <AddBlog />
-      </DefaultLayout>
-    ),
-    errorElement: <div>Something wrong...</div>,
-  },
-  {
-    path: "/single",
-    element: (
-      <DefaultLayout>
-        <SingleBlog />
-      </DefaultLayout>
-    ),
-    errorElement: <div>Something wrong...</div>,
-  },
-]);
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <Router>
+    <QueryClientProvider client={queryClient}>
+      <ContextProvider>
+        <App />
+      </ContextProvider>
+    </QueryClientProvider>
+  </Router>
 );

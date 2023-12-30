@@ -1,40 +1,40 @@
 import { Children, ReactNode } from "react";
 import { Link } from "react-router-dom";
 
-// display: inline-block;
-// outline: 0;
-// cursor: pointer;
-// border-radius: 8px;
-// box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
-// background: #FFD814;
-// border: 1px solid #FCD200;
-// font-size: 13px;
-// height: 31px;
-// padding: 0 11px;
-// text-align: center;
-// width: 100%;
-// min-width: 200px;
-// font-weight: 500;
-// color: #0F1111;
-// :hover{
-//     background: #F7CA00;
-//     border-color: #F2C200;
-//     box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
-// }
+export enum ButtonSize {
+  FULL = "w-full px-4 py-2",
+  DEFAULT = "px-8 py-2",
+  MEDIUM = "w-64 px-6 py-4",
+}
 
 const CustomButton: React.FC<{
   title: string;
-  path: string;
+  path?: string;
   children?: ReactNode;
-}> = ({ children, title, path }) => {
+  triggerProps?: any;
+  size?: ButtonSize;
+}> = ({ children, title, path, triggerProps, size }) => {
   return (
     <>
-      <Link to={`/${path}`}>
-        <button className="flex items-center justify-center space-x-2 px-4 py-2 bg-[#F7CA00] rounded-md hover:hover:bg-[#f7d22d] ">
+      {path ? (
+        <Link to={`/${path}`}>
+          <button
+            {...triggerProps}
+            className={`flex items-center justify-center  px-4 py-2 text-[#8F8F8F] hover:text-[#272727] rounded-md ${size}`}
+          >
+            <span className="flex items-center">{children}</span>
+            <span>{title}</span>
+          </button>
+        </Link>
+      ) : (
+        <button
+          {...triggerProps}
+          className={`flex items-center justify-center px-4 py-2 text-[#8F8F8F] hover:text-[#272727] rounded-md  ${size}`}
+        >
           <span className="flex items-center">{children}</span>
           <span>{title}</span>
         </button>
-      </Link>
+      )}
     </>
   );
 };

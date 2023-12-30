@@ -1,69 +1,58 @@
 import { Link } from "react-router-dom";
-import BlogCard from "../../card";
+import { useBlogList } from "../../../api/services/blogList";
 
-const items = [
-  {
-    title:
-      "The Impact of Technology on the Workplace: How Technology is Changing",
-    userName: "Gio Davlasheridze",
-    category: "Personal",
-    uploadDate: "December 4, 2023",
-  },
-  {
-    title:
-      "The Impact of Technology on the Workplace: How Technology is Changing",
-    userName: "Gio Davlasheridze",
-    category: "Photography",
-    uploadDate: "December 4, 2023",
-  },
-  {
-    title:
-      "The Impact of Technology on the Workplace: How Technology is Changing",
-    userName: "Gio Davlasheridze",
-    category: "Photography",
-    uploadDate: "December 4, 2023",
-  },
-  {
-    title:
-      "The Impact of Technology on the Workplace: How Technology is Changing",
-    userName: "Gio Davlasheridze",
-    category: "Music",
-    uploadDate: "December 4, 2023",
-  },
-  {
-    title:
-      "The Impact of Technology on the Workplace: How Technology is Changing",
-    userName: "Gio Davlasheridze",
-    category: "Food",
-    uploadDate: "December 4, 2023",
-  },
-  {
-    title:
-      "The Impact of Technology on the Workplace: How Technology is Changing",
-    userName: "Gio Davlasheridze",
-    category: "Travel",
-    uploadDate: "December 4, 2023",
-  },
-];
+import BlogCard from "../../card";
+import dayjs from "dayjs";
+import { useContext, useEffect, useState } from "react";
+import { AppContext } from "../../../context/ContextProvider";
+import CardSkeleton from "../../card/cardSkeleton";
 
 const Content = () => {
-  const handleCardClick = (cardObj: any) => {
-    console.log(cardObj);
+  const { data: listData, isLoading }: any = useBlogList();
+  const { authUserInfo } = useContext(AppContext);
+  const [userInterestsBlogs, setUserInterestsBlogs] = useState([]);
+
+  useEffect(() => {
+    customSort();
+  }, [authUserInfo, listData]);
+
+  const customSort = () => {
+    if (authUserInfo) {
+      const filteredData = listData?.data?.filter((item: any) => {
+        return authUserInfo?.interests.includes(item.category);
+      });
+      setUserInterestsBlogs(filteredData);
+    } else {
+      setUserInterestsBlogs(listData?.data);
+    }
   };
+
   return (
-    <div className="grid xl:grid-cols-3 grid-cols-1 gap-5 mt-10">
-      {items.map((item: any, index: number) => {
-        return (
-          <Link key={index} to="/single" onClick={() => handleCardClick(item)}>
-            <BlogCard
-              title={item.title}
-              userName={item.userName}
-              category={item.category}
-              uploadDate={item.uploadDate}
-            />
-          </Link>
-        );
-      })}
+    <div className="mx-auto container">
+      {!isLoading
+        ? userInterestsBlogs?.map((item: any, index: number) => {
+            const formattedDate = dayjs(item.createdAt).format("MMM D, YYYY");
+            return (
+              <div key={index}>
+                <BlogCard
+                  title={item.title}
+                  article={item.article}
+                  userName={item.creator.username}
+                  category={item.category}
+                  uploadDate={formattedDate}
+                  blogId={item._id}
+                  creator={item.creator._id}
+                />
+              </div>
+            );
+          })
+        : listData?.data.map((item: any, index: number) => {
+            return (
+              <div key={index}>
+                <CardSkeleton />
+              </div>
+            );
+          })}
     </div>
   );
 };
