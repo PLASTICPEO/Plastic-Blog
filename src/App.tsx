@@ -10,7 +10,6 @@ import SingleBlog from "./pages/single/index.tsx";
 import ProtectedRoute from "./protectRouter/index.tsx";
 import CategoriesPage from "./pages/categories/index.tsx";
 import UserPage from "./pages/user-page/index.tsx";
-import UserPageLayout from "./components/userPageLayout/index.tsx";
 
 const App = () => {
   return (
@@ -62,9 +61,7 @@ const App = () => {
         element={
           <DefaultLayout>
             <ProtectedRoute>
-              <UserPageLayout>
-                <UserPage />
-              </UserPageLayout>
+              <UserPage />
             </ProtectedRoute>
           </DefaultLayout>
         }

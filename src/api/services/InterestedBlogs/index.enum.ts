@@ -1,0 +1,7 @@
+export enum ENDPOINTS {
+  INTERESTEDBLOGS = "/api/blog/interested",
+}
+
+export enum INTERESTEDBLOGS_QUERY_KEYS {
+  INTERESTEDBLOGS = "INTERESTEDBLOGS",
+}

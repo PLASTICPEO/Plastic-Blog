@@ -1,5 +1,5 @@
 export enum ENDPOINTS {
-  TOPICS = "/api/category/",
+  TOPICS = "/api/blog/category",
 }
 
 export enum QUERY_KEYS {

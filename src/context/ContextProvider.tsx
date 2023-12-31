@@ -8,6 +8,7 @@ import { useQueryClient } from "react-query";
 
 import { useNavigate } from "react-router-dom";
 import { QUERY_KEYS } from "../api/services/blogList/index.enum";
+import { INTERESTEDBLOGS_QUERY_KEYS } from "../api/services/InterestedBlogs/index.enum";
 
 export const AppContext = createContext<ContextTypes>({
   selectedCard: {
@@ -55,6 +56,10 @@ const ContextProvider = ({ children }: ContextProviderTypes) => {
   useEffect(() => {
     if (logSuccess) {
       setAuthUserInfo(res);
+      console.log("ჩეკენცო");
+      queryClient.prefetchQuery({
+        queryKey: [INTERESTEDBLOGS_QUERY_KEYS.INTERESTEDBLOGS],
+      });
     } else {
       setAuthUserInfo(null);
     }

@@ -1,5 +1,5 @@
 export enum ENDPOINTS {
-  BLOGLIST = "/api/blog/list",
+  BLOGLIST = "/api/blog/all",
 }
 
 export enum QUERY_KEYS {

@@ -13,7 +13,7 @@ const CustomSearch: React.FC = () => {
 
   const onSearch: SearchProps["onSearch"] = (value: any) => {
     const trimmedValue = value.trim();
-    const searchResult = list.data.filter((item: any) =>
+    const searchResult = list.filter((item: any) =>
       item.title.toLowerCase().includes(trimmedValue.toLowerCase())
     );
 
@@ -46,7 +46,6 @@ const CustomSearch: React.FC = () => {
           <Input
             placeholder="Search"
             onChange={(e: any) => onSearch(e.target.value)}
-            style={{ width: 350 }}
             suffix={<SearchOutlined />}
           />
         </ConfigProvider>
@@ -56,7 +55,6 @@ const CustomSearch: React.FC = () => {
           <div className="text-[#343633] p-2">Blogs:</div>
           <div className="flex flex-col space-y-2 min-h-44 max-h-96 mt-2 overflow-y-auto">
             {result.map((item: any, index: number) => {
-              const formattedDate = dayjs(item.createdAt).format("MMM D, YYYY");
               return (
                 <div
                   className=" bg-[#e0e1dd] opacity-90 hover:bg-opacity-40 py-4 px-6 rounded-md"
@@ -65,7 +63,9 @@ const CustomSearch: React.FC = () => {
                 >
                   <Link to={`/single/${item._id}`}>
                     <p className="text-[#343633]">{item.title}</p>
-                    <p className="text-[#97989F]">{formattedDate}</p>
+                    <p className="text-[#97989F]">
+                      {dayjs(item.createdAt).format("MMM D, YYYY")}
+                    </p>
                   </Link>
                 </div>
               );

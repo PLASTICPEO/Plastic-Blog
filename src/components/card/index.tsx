@@ -6,6 +6,7 @@ import Icon from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/ContextProvider";
+import CardDropDown from "./cardDropDown";
 
 const BlogCard: React.FC<CardTypes> = ({
   category,
@@ -18,31 +19,26 @@ const BlogCard: React.FC<CardTypes> = ({
   uploadDate,
   creator,
 }) => {
-  const { authUserInfo, logSuccess } = useContext(AppContext);
-  const [additBlog, setAdditBlog] = useState(false);
-
-  useEffect(() => {
-    if (creator === authUserInfo?._id) {
-      setAdditBlog(true);
-    } else {
-      setAdditBlog(false);
-    }
-  }, [authUserInfo, logSuccess]);
+  const { authUserInfo } = useContext(AppContext);
 
   return (
     <div className="flex flex-col bg-[#FFFFFF] border-b-[1px] border-[#F2F2F2] p-4 hover:bg-[#5B8BFB0D]">
       <div className="flex  justify-between space-y-2">
         <div className="space-y-3">
-          <Link to={`/user-page/${creator}`}>
-            <div className="flex items-center space-x-2">
-              <img
-                className="w-8 h-8 rounded-full object-cover"
-                src={UserAvatar}
-                alt="User avatar"
-              />
-              <p className="text-[#97989F] text-xs">{userName}</p>
-            </div>
+          <Link
+            to={`/user-page/${creator}`}
+            className="flex items-center space-x-4"
+          >
+            <img
+              className="w-8 h-8 rounded-full object-cover"
+              src={UserAvatar}
+              alt="User avatar"
+            />
+            <p className="text-[#97989F] text-xs hover:text-[gray]">
+              {userName}
+            </p>
           </Link>
+
           <Link to={`/single/${blogId}`}>
             <div className="flex flex-col justify-between overflow-hidden">
               <div className="text-[black] overflow-hidden space-y-2">
@@ -68,17 +64,29 @@ const BlogCard: React.FC<CardTypes> = ({
       <div className="flex justify-between xl:mt-8 mt-2 w-full">
         <div className="flex items-center space-x-4">
           <Link to={`/category/${category}`}>
-            <p className="text-[#97989F] hover:text-[#BFB8AD] text-xs bg-[#4B6BFB0D] px-2.5 py-1 rounded-3xl">
+            <p className="text-[#97989F] hover:text-[gray] text-xs bg-[#4B6BFB0D] px-2.5 py-1 rounded-3xl">
               {category}
             </p>
           </Link>
           <p className="text-[#97989F] text-sm">{uploadDate}</p>
         </div>
-        {additBlog ? (
-          <div>
-            <EllipsisOutlined className="text-3xl text-[#97989F] hover:text-[black] cursor-pointer" />
-          </div>
-        ) : null}
+        <div>
+          <CardDropDown
+            triggerProps={{
+              className: `${
+                creator === authUserInfo?.id ? "visible" : "invisible"
+              } text-3xl text-[#97989F] hover:text-[black] border-none cursor-pointer`,
+            }}
+            blogId={blogId}
+          >
+            <EllipsisOutlined />
+          </CardDropDown>
+          {/* <EllipsisOutlined
+            className={`${
+              creator === authUserInfo?.id ? "visible" : "invisible"
+            } text-3xl text-[#97989F] hover:text-[black] cursor-pointer`}
+          /> */}
+        </div>
       </div>
     </div>
   );

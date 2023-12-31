@@ -3,56 +3,65 @@ import { useBlogList } from "../../../api/services/blogList";
 
 import BlogCard from "../../card";
 import dayjs from "dayjs";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AppContext } from "../../../context/ContextProvider";
 import CardSkeleton from "../../card/cardSkeleton";
+import { useInterestedBlogs } from "../../../api/services/InterestedBlogs";
 
 const Content = () => {
-  const { data: listData, isLoading }: any = useBlogList();
-  const { authUserInfo } = useContext(AppContext);
-  const [userInterestsBlogs, setUserInterestsBlogs] = useState([]);
+  const { logSuccess } = useContext(AppContext);
+  const {
+    data: allBlogsList,
+    isLoading: allblogsLoading,
+    error: allBlogsError,
+  }: any = useBlogList();
+  const {
+    data: interestedBlogsList,
+    isLoading: interestedBlogsLoading,
+    error: interestedBlogsError,
+  }: any = useInterestedBlogs({ enabled: logSuccess });
 
-  useEffect(() => {
-    customSort();
-  }, [authUserInfo, listData]);
-
-  const customSort = () => {
-    if (authUserInfo) {
-      const filteredData = listData?.data?.filter((item: any) => {
-        return authUserInfo?.interests.includes(item.category);
-      });
-      setUserInterestsBlogs(filteredData);
-    } else {
-      setUserInterestsBlogs(listData?.data);
-    }
-  };
+  if (allBlogsError || interestedBlogsError) {
+    return <p>Error: {allBlogsError || interestedBlogsError}</p>;
+  }
 
   return (
     <div className="mx-auto container">
-      {!isLoading
-        ? userInterestsBlogs?.map((item: any, index: number) => {
-            const formattedDate = dayjs(item.createdAt).format("MMM D, YYYY");
-            return (
-              <div key={index}>
-                <BlogCard
-                  title={item.title}
-                  article={item.article}
-                  userName={item.creator.username}
-                  category={item.category}
-                  uploadDate={formattedDate}
-                  blogId={item._id}
-                  creator={item.creator._id}
-                />
-              </div>
-            );
-          })
-        : listData?.data.map((item: any, index: number) => {
-            return (
-              <div key={index}>
-                <CardSkeleton />
-              </div>
-            );
-          })}
+      {logSuccess ? (
+        interestedBlogsLoading ? (
+          <CardSkeleton />
+        ) : (
+          interestedBlogsList?.map((item: any, index: number) => (
+            <div key={index}>
+              <BlogCard
+                title={item.title}
+                article={item.article}
+                userName={item.creator.username}
+                category={item.category}
+                uploadDate={dayjs(item.createdAt).format("MMM D, YYYY")}
+                blogId={item._id}
+                creator={item.creator.id}
+              />
+            </div>
+          ))
+        )
+      ) : allblogsLoading ? (
+        <CardSkeleton />
+      ) : (
+        allBlogsList?.map((item: any, index: number) => (
+          <div key={index}>
+            <BlogCard
+              title={item.title}
+              article={item.article}
+              userName={item.creator.username}
+              category={item.category}
+              uploadDate={dayjs(item.createdAt).format("MMM D, YYYY")}
+              blogId={item._id}
+              creator={item.creator.id}
+            />
+          </div>
+        ))
+      )}
     </div>
   );
 };

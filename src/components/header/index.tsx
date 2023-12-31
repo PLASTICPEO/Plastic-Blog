@@ -27,15 +27,9 @@ const Header = () => {
       </div>
       {logSuccess ? (
         <div className="flex items-center justify-center xl:space-x-6 space-x-2">
-          {/* <CustomButton title="Write" path="add-blog">
-            <FormOutlined />
-          </CustomButton>
-      */}
-          {/* <Logout /> */}
-
           <CustomDropDown
             titles={["Write", "Profile", "Settings", "Logout"]}
-            paths={["/add-blog", `/user-page/${authUserInfo?._id}`, "/", "/"]}
+            paths={["/add-blog", `/user-page/${authUserInfo?.id}`, "/", "/"]}
             icons={[
               <FormOutlined />,
               <UserOutlined />,

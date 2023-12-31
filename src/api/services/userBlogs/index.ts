@@ -1,14 +1,14 @@
 import { useQuery, useQueryClient } from "react-query";
-import { blogList } from "./api";
+import { userBlogs } from "./api";
 import { QUERY_KEYS } from "./index.enum";
 
-export const useBlogList = () => {
+export const useUserBlogsList = () => {
   return useQuery({
-    queryKey: [QUERY_KEYS.BLOGLIST],
-    queryFn: blogList,
+    queryKey: [QUERY_KEYS.USERBLOGS],
+    queryFn: userBlogs,
     select: (data: any) => {
       return data.data;
     },
-    refetchOnWindowFocus: false,
+    staleTime: Infinity,
   });
 };

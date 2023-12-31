@@ -1,6 +1,7 @@
-import { UseQueryOptions, useQuery } from "react-query";
+import { UseQueryOptions, useQuery, useQueryClient } from "react-query";
 import { meRequest } from "./api";
 import { QUERY_KEYS } from "./index.enum";
+import { INTERESTEDBLOGS_QUERY_KEYS } from "../InterestedBlogs/index.enum";
 import { useContext, useEffect } from "react";
 import { AppContext } from "../../../context/ContextProvider";
 
