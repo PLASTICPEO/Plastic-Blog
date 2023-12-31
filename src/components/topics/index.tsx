@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { ConfigProvider, Space, Tag } from "antd";
 
 const { CheckableTag } = Tag;

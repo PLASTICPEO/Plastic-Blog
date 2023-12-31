@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { ConfigProvider, Input, Space } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import type { SearchProps } from "antd/es/input";
 import { useBlogList } from "../../../api/services/blogList";
-import BlogCard from "../../card";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 

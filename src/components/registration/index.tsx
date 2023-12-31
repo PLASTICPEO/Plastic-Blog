@@ -1,15 +1,14 @@
-import { ConfigProvider, Form, Input, Tooltip, message } from "antd";
+import { ConfigProvider, Form, Input, Tooltip } from "antd";
 import {
   MailOutlined,
   InfoCircleOutlined,
   UserOutlined,
   LockOutlined,
-  MehFilled,
 } from "@ant-design/icons";
 import CustomButton, { ButtonSize } from "../button";
 import { useRegistration } from "./hooks/useRegistration";
 import Topics from "../topics";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Registration: React.FC = () => {
   const { onFinish, onFinishFailed, form, contextHolder } = useRegistration();

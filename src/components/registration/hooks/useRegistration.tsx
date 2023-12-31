@@ -29,8 +29,7 @@ export const useRegistration = () => {
     }
   }, [res, form]);
 
-  const onFinishFailed = (errr: any) => {
-    console.log(err);
+  const onFinishFailed = () => {
     messageApi.open({
       type: "error",
       content: err.response.data.error,

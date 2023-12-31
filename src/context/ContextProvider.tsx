@@ -6,8 +6,6 @@ import { setAuthorizationHeader } from "../api/services";
 import { useMeRequest } from "../api/services/me";
 import { useQueryClient } from "react-query";
 
-import { useNavigate } from "react-router-dom";
-import { QUERY_KEYS } from "../api/services/blogList/index.enum";
 import { INTERESTEDBLOGS_QUERY_KEYS } from "../api/services/InterestedBlogs/index.enum";
 
 export const AppContext = createContext<ContextTypes>({
@@ -50,7 +48,7 @@ const ContextProvider = ({ children }: ContextProviderTypes) => {
   const [authorizedUser, setAuthorizedUser] = useState<any>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<any>(false);
   const [authUserInfo, setAuthUserInfo] = useState<any>(null);
-  const { mutate: blogSave, data: sentBlogRes } = useBlogSave();
+  const { mutate: blogSave } = useBlogSave();
   const { data: res }: any = useMeRequest({ enabled: !!logSuccess });
 
   useEffect(() => {

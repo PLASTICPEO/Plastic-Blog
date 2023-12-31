@@ -2,9 +2,8 @@ import { CardTypes } from "./card.types";
 import Thumbnile from "../../assets/img/thumbnile.gif";
 import UserAvatar from "../../assets/img/userAvatar.jpeg";
 import { EllipsisOutlined } from "@ant-design/icons";
-import Icon from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AppContext } from "../../context/ContextProvider";
 import CardDropDown from "./cardDropDown";
 
@@ -12,8 +11,6 @@ const BlogCard: React.FC<CardTypes> = ({
   category,
   title,
   article,
-  userAvatar,
-  thumbnile,
   blogId,
   userName,
   uploadDate,

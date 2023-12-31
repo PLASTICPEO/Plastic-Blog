@@ -10,7 +10,7 @@ const CustomModal: React.FC<ModalTypes> = ({
   title,
   triggerProps,
 }) => {
-  const { regSuccess, isAuthenticated } = useContext(AppContext);
+  const { regSuccess } = useContext(AppContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -18,12 +18,6 @@ const CustomModal: React.FC<ModalTypes> = ({
       handleCancel();
     }
   }, [regSuccess]);
-
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     handleCancel();
-  //   }
-  // }, [isAuthenticated]);
 
   const Trigger = as ? as : Button;
 

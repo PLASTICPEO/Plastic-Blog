@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, message } from "antd";
+import { Button } from "antd";
 
 const NotificationMessage: React.FC<{ message: any }> = ({ message }) => {
   const [messageApi, contextHolder] = message.useMessage();

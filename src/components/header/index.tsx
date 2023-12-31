@@ -1,10 +1,8 @@
-import { useContext, useEffect } from "react";
-import CustomButton from "../button";
+import { useContext } from "react";
 import LogIn from "../login";
 import CustomModal from "../modal";
 import Registration from "../registration";
 import Logo from "./logo";
-import Navigator from "./navigator";
 import {
   FormOutlined,
   UserOutlined,
@@ -12,7 +10,6 @@ import {
   LogoutOutlined,
 } from "@ant-design/icons";
 import { AppContext } from "../../context/ContextProvider";
-// import Logout from "../logout";
 import CustomSearch from "./search";
 import CustomDropDown from "../dropdown";
 

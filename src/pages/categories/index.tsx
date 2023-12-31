@@ -1,8 +1,5 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useBlogCategory } from "../../api/services/categories";
-import { useEffect, useState } from "react";
-import { useBlogSingle } from "../../api/services/blogSingle";
-import { useBlogList } from "../../api/services/blogList";
 import BlogCard from "../../components/card";
 import dayjs from "dayjs";
 import CardSkeleton from "../../components/card/cardSkeleton";

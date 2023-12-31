@@ -1,15 +1,8 @@
-import React, { useContext } from "react";
-import {
-  DownOutlined,
-  UserOutlined,
-  SettingOutlined,
-  LogoutOutlined,
-} from "@ant-design/icons";
+import { DownOutlined } from "@ant-design/icons";
 import { ConfigProvider, MenuProps } from "antd";
 import { Dropdown, Space } from "antd";
 import UserIcon from "../userIcon";
 import { Link } from "react-router-dom";
-import { AppContext } from "../../context/ContextProvider";
 import { UserIconSize } from "../userIcon/index.enum";
 
 interface CustomDropDownProps {

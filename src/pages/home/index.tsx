@@ -1,5 +1,4 @@
 import Content from "../../components/home/content";
-import Hero from "../../components/home/hero";
 
 const Home = () => {
   return (

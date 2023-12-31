@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from "../../context/ContextProvider";
 import userAvatar from "../../assets/img/userAvatar.jpeg";
 import { useBlogLike } from "../../api/services/like";

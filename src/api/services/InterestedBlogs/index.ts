@@ -1,4 +1,4 @@
-import { UseQueryOptions, useQuery, useQueryClient } from "react-query";
+import { UseQueryOptions, useQuery } from "react-query";
 import { interestedBlogs } from "./api";
 import { INTERESTEDBLOGS_QUERY_KEYS } from "./index.enum";
 

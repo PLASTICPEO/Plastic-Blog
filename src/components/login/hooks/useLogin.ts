@@ -1,7 +1,6 @@
 import { useContext, useEffect } from "react";
 import { useLogin } from "../../../api/services/login";
 import { AppContext } from "../../../context/ContextProvider";
-import { useNavigate } from "react-router-dom";
 
 export const useAuth = () => {
   const { mutate: logIn, data: res } = useLogin();
