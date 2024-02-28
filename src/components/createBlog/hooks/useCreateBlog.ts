@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Form, SelectProps } from "antd";
 import { useBlogSave } from "../../../api/services/blogSave";
+import { useNavigate } from "react-router-dom";
 
 export const useCreateBlog = () => {
   //   const queryClient = useQueryClient();
@@ -83,9 +84,6 @@ export const useCreateBlog = () => {
   useEffect(() => {
     if (sentBlogRes) {
       form.resetFields();
-      //   queryClient.refetchQueries({
-      //     queryKey: [QUERY_KEYS.BLOGLIST],
-      //   });
     }
   }, [sentBlogRes, form]);
 
