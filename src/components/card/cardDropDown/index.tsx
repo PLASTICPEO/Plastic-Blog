@@ -1,6 +1,9 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { ConfigProvider, MenuProps } from "antd";
 import { Dropdown } from "antd";
+import { useBlogDelete } from "../../../api/services/deleteBlog";
+import { useQueryClient } from "react-query";
+import { useNavigate } from "react-router-dom";
 
 const CardDropDown: React.FC<{
   as?: any;
@@ -8,6 +11,10 @@ const CardDropDown: React.FC<{
   triggerProps?: any;
   children?: ReactNode;
 }> = ({ as, triggerProps, children, blogId }) => {
+  const queryClient = useQueryClient();
+  const [blogID, setBlogID] = useState("");
+  const { mutate: deleteBlog, data: deleteRes }: any = useBlogDelete();
+
   const Trigger = as ? as : "div";
   const items: MenuProps["items"] = [
     {
@@ -26,13 +33,18 @@ const CardDropDown: React.FC<{
       label: (
         <p
           className="text-[#C63805] hover:text-[black]"
-          onClick={() => console.log("სტატიის წაშლა", blogId)}
+          onClick={() => deleteBlogHandle(blogId)}
         >
           Delete story
         </p>
       ),
     },
   ];
+
+  const deleteBlogHandle = (ID: any) => {
+    deleteBlog(ID);
+  };
+
   return (
     <>
       <ConfigProvider

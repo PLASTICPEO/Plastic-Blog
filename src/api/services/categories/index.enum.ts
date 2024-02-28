@@ -2,6 +2,6 @@ export enum ENDPOINTS {
   TOPICS = "/api/blog/category",
 }
 
-export enum QUERY_KEYS {
+export enum CATEGORY_QUERY_KEYS {
   TOPICS = "TOPICS",
 }

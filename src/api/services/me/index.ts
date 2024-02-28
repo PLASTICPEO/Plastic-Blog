@@ -8,7 +8,7 @@ export const useMeRequest = (queryOptions: UseQueryOptions) => {
   const { setAuthUserInfo } = useContext(AppContext);
   return useQuery({
     queryKey: [QUERY_KEYS.ME],
-    queryFn: meRequest,
+    queryFn: () => meRequest(),
     select: (data: any) => {
       setAuthUserInfo(data);
       return data.data;

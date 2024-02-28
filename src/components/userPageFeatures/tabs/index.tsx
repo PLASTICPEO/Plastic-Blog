@@ -3,7 +3,7 @@ import { ConfigProvider, Tabs } from "antd";
 import type { TabsProps } from "antd";
 import UserBlogs from "./user-blogs";
 
-const CustomTabs: React.FC = () => {
+const UserPageTabs: React.FC = () => {
   const onChange = (key: string) => {
     console.log(key);
   };
@@ -41,4 +41,4 @@ const CustomTabs: React.FC = () => {
   );
 };
 
-export default CustomTabs;
+export default UserPageTabs;

@@ -1,12 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Hedvig+Letters+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
-/* @layer base {
-    html {
-      font-family: 'Hedvig Letters Sans', sans-serif;
-    }
+.no-scrollbar {
+  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 11 */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari, Opera */
+}
+
+
+
+/* .tabShadow {
+  box-shadow:  40px 0 1px -5px rgba(255, 255, 255, 0.7),  -40px 0 0 -5px rgba(0, 0, 0, 0.8);
 } */
+
+
+.tabShadowLeft {
+  z-index: 1;
+  box-shadow:  10px 0 15px 10px rgb(255, 255, 255);
+}
+
+.tabShadowRight {
+  z-index: 1;
+  box-shadow: -10px 0 15px 10px rgb(255, 255, 255);
+}
+
+
+
+
+
+

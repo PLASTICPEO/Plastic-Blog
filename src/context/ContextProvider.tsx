@@ -25,9 +25,12 @@ export const AppContext = createContext<ContextTypes>({
   },
   authorizedUser: "",
   authUserInfo: "",
+  changeCategory: "",
+  selectedTags: [],
   regSuccess: false,
   logSuccess: false,
   isAuthenticated: false,
+  scrollY: 0,
   setSelectedCard: () => null,
   setNewBlogObject: () => null,
   handleSentNewBlog: () => null,
@@ -37,10 +40,14 @@ export const AppContext = createContext<ContextTypes>({
   setAuthorizedUser: () => null,
   setAuthUserInfo: () => null,
   handleLogout: () => null,
+  setSelectedTags: () => null,
+  setChangeCategory: () => null,
+  scrollPositionTop: () => null,
+  forYou: true,
+  setForYou: () => null,
 });
 
 const ContextProvider = ({ children }: ContextProviderTypes) => {
-  const queryClient = useQueryClient();
   const [selectedCard, setSelectedCard] = useState<any>(null);
   const [newBlogObject, setNewBlogObject] = useState<any>(null);
   const [regSuccess, setRegSuccess] = useState<any>(null);
@@ -48,16 +55,18 @@ const ContextProvider = ({ children }: ContextProviderTypes) => {
   const [authorizedUser, setAuthorizedUser] = useState<any>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<any>(false);
   const [authUserInfo, setAuthUserInfo] = useState<any>(null);
+  const [selectedTags, setSelectedTags] = useState<any>([]);
+  const [changeCategory, setChangeCategory] = useState("");
+  const [scrollY, setScrollY] = useState(0);
+  const [forYou, setForYou] = useState(true);
+
   const { mutate: blogSave } = useBlogSave();
   const { data: res }: any = useMeRequest({ enabled: !!logSuccess });
+  // const queryClient = useQueryClient();
 
   useEffect(() => {
     if (logSuccess) {
       setAuthUserInfo(res);
-      console.log("ჩეკენცო");
-      queryClient.prefetchQuery({
-        queryKey: [INTERESTEDBLOGS_QUERY_KEYS.INTERESTEDBLOGS],
-      });
     } else {
       setAuthUserInfo(null);
     }
@@ -73,9 +82,34 @@ const ContextProvider = ({ children }: ContextProviderTypes) => {
     }
   }, []);
 
+  const scrollPositionTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const handleScrollY = () => {
+    setScrollY(window.scrollY);
+  };
+
+  useEffect(() => {
+    handleScrollY();
+    window.addEventListener("scroll", handleScrollY);
+
+    return () => {
+      window.removeEventListener("scroll", handleScrollY);
+    };
+  }, [scrollY]);
+
   const handleSentNewBlog = () => {
     blogSave(newBlogObject);
   };
+
+  useEffect(() => {
+    scrollPositionTop();
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem(AUTH_TOKEN);
@@ -102,6 +136,14 @@ const ContextProvider = ({ children }: ContextProviderTypes) => {
         setAuthUserInfo,
         authUserInfo,
         handleLogout,
+        selectedTags,
+        setSelectedTags,
+        setChangeCategory,
+        changeCategory,
+        scrollPositionTop,
+        scrollY,
+        setForYou,
+        forYou,
       }}
     >
       {children}

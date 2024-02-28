@@ -3,18 +3,19 @@ import { AppContext } from "../../context/ContextProvider";
 import LoadingAnimationComponent from "../loading";
 import { UserIconSize } from "./index.enum";
 
-const UserIcon: React.FC<{ size?: UserIconSize }> = ({ size }) => {
-  const { authUserInfo } = useContext(AppContext);
-
+const UserIcon: React.FC<{ size?: UserIconSize; blogerInfo: any }> = ({
+  size,
+  blogerInfo,
+}) => {
   return (
     <div className="cursor-pointer">
-      {authUserInfo ? (
+      {blogerInfo ? (
         <div
           className={`flex items-center justify-center ${size} rounded-full bg-[#DEC1FF]`}
         >
-          <p className="text-[#797E77]">{authUserInfo?.username[0]}</p>
+          <p className="text-[#797E77]">{blogerInfo?.username[0]}</p>
           <p className="text-[#797E77]">
-            {authUserInfo?.username[authUserInfo?.username.length - 1]}
+            {blogerInfo?.username[blogerInfo?.username.length - 1]}
           </p>
         </div>
       ) : (

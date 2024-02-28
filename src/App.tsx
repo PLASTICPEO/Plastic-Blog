@@ -10,15 +10,51 @@ import SingleBlog from "./pages/single/index.tsx";
 import ProtectedRoute from "./protectRouter/index.tsx";
 import CategoriesPage from "./pages/categories/index.tsx";
 import UserPage from "./pages/user-page/index.tsx";
+import BlogsFlow from "./components/home/blogsFlow/index.tsx";
+import BlogerPage from "./pages/blogerPage/index.tsx";
 
 const App = () => {
   return (
     <Routes>
       <Route
+        path={ROOT_PATHS.ROOT}
+        element={
+          <DefaultLayout>
+            <Home />
+          </DefaultLayout>
+        }
+      />
+      <Route
+        path={PAGE_PATH.BLOGSFLOW}
+        element={
+          <DefaultLayout>
+            <Home />
+          </DefaultLayout>
+        }
+      >
+        <Route
+          path={PAGE_PATH.BLOGSFLOW}
+          element={
+            <DefaultLayout>
+              <BlogsFlow />
+            </DefaultLayout>
+          }
+        />
+      </Route>
+
+      <Route
         path={PAGE_PATH.ABOUT}
         element={
           <DefaultLayout>
             <About />
+          </DefaultLayout>
+        }
+      />
+      <Route
+        path={PAGE_PATH.BLOGERPAGE}
+        element={
+          <DefaultLayout>
+            <BlogerPage />
           </DefaultLayout>
         }
       />
@@ -40,14 +76,7 @@ const App = () => {
           </DefaultLayout>
         }
       />
-      <Route
-        path={ROOT_PATHS.ROOT}
-        element={
-          <DefaultLayout>
-            <Home />
-          </DefaultLayout>
-        }
-      />
+
       <Route
         path={PAGE_PATH.CATEGORIES}
         element={

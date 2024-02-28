@@ -4,6 +4,8 @@ import { Dropdown, Space } from "antd";
 import UserIcon from "../userIcon";
 import { Link } from "react-router-dom";
 import { UserIconSize } from "../userIcon/index.enum";
+import { useContext } from "react";
+import { AppContext } from "../../context/ContextProvider";
 
 interface CustomDropDownProps {
   titles: string[];
@@ -18,6 +20,8 @@ const CustomDropDown: React.FC<CustomDropDownProps> = ({
   icons,
   triggerProps,
 }) => {
+  const { authUserInfo } = useContext(AppContext);
+
   const items: MenuProps["items"] = titles.map((title, index) => ({
     label: (
       <Link
@@ -46,7 +50,7 @@ const CustomDropDown: React.FC<CustomDropDownProps> = ({
     >
       <Dropdown menu={{ items }} trigger={["click"]}>
         <Space>
-          <UserIcon size={UserIconSize.SMALL} />
+          <UserIcon blogerInfo={authUserInfo} size={UserIconSize.SMALL} />
           <div className="cursor-pointer">
             <DownOutlined />
           </div>

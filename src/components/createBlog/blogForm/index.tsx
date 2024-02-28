@@ -31,6 +31,7 @@ const BlogForm: React.FC = () => {
           />
         </Form.Item>
         <Form.Item
+          className="caret-[#97989F]"
           name="title"
           rules={[{ required: true, message: "Please create title!" }]}
         >
@@ -46,6 +47,7 @@ const BlogForm: React.FC = () => {
         </Form.Item>
 
         <Form.Item
+          className="caret-[#97989F]"
           name="article"
           rules={[
             { required: true, message: "You have not written an article!" },

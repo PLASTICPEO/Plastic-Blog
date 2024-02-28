@@ -33,6 +33,14 @@ export interface ContextTypes {
   authUserInfo: any;
   setAuthUserInfo: Dispatch<SetStateAction<any>>;
   handleLogout: () => void;
+  selectedTags: string[];
+  setSelectedTags: Dispatch<SetStateAction<string[]>>;
+  setChangeCategory: Dispatch<SetStateAction<any>>;
+  changeCategory: string;
+  scrollY: number;
+  scrollPositionTop: () => void;
+  setForYou: Dispatch<SetStateAction<any>>;
+  forYou: boolean;
 }
 
 export interface ContextProviderTypes {

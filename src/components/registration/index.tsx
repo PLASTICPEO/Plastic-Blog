@@ -8,11 +8,12 @@ import {
 import CustomButton, { ButtonSize } from "../button";
 import { useRegistration } from "./hooks/useRegistration";
 import Topics from "../topics";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "../../context/ContextProvider";
 
 const Registration: React.FC = () => {
   const { onFinish, onFinishFailed, form, contextHolder } = useRegistration();
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const { selectedTags, setSelectedTags } = useContext(AppContext);
 
   return (
     <div className="flex items-center justify-center  ">

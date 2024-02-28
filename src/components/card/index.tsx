@@ -23,7 +23,7 @@ const BlogCard: React.FC<CardTypes> = ({
       <div className="flex  justify-between space-y-2">
         <div className="space-y-3">
           <Link
-            to={`/user-page/${creator}`}
+            to={`/blogger/${creator}`}
             className="flex items-center space-x-4"
           >
             <img
@@ -37,11 +37,15 @@ const BlogCard: React.FC<CardTypes> = ({
           </Link>
 
           <Link to={`/single/${blogId}`}>
-            <div className="flex flex-col justify-between overflow-hidden">
-              <div className="text-[black] overflow-hidden space-y-2">
-                <p className="line-clamp-1 text-lg font-bold w-64">{title}</p>
-                <div className="xl:block hidden">
-                  <span className="line-clamp-3 text-sm w-96">{article}</span>
+            <div className="flex flex-col  overflow-hidden">
+              <div className="text-[black] overflow-hidden xl:space-y-2">
+                <p className="line-clamp-1 xl:text-lg  font-bold w-64">
+                  {title}
+                </p>
+                <div>
+                  <span className="line-clamp-2 mt-1 text-sm xl:w-96 w-48">
+                    {article}
+                  </span>
                 </div>
               </div>
             </div>
@@ -50,7 +54,7 @@ const BlogCard: React.FC<CardTypes> = ({
         <Link to={`/single/${blogId}`}>
           <div>
             <img
-              className="rounded-sm xl:w-full w-24 h-24 xl:h-32 object-cover"
+              className="rounded-sm xl:w-full xl:w-24 xl:h-24 w-20 h-20 xl:h-32 object-cover"
               src={Thumbnile}
               alt="User avatar"
             />

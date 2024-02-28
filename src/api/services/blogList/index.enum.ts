@@ -3,5 +3,5 @@ export enum ENDPOINTS {
 }
 
 export enum QUERY_KEYS {
-  BLOGLIST = "BANNERSLIST",
+  BLOGLIST = "BLOGLIST",
 }

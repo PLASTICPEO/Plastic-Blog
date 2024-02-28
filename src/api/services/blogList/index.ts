@@ -1,14 +1,18 @@
-import { useQuery } from "react-query";
+import { UseInfiniteQueryOptions, useInfiniteQuery } from "react-query";
 import { blogList } from "./api";
 import { QUERY_KEYS } from "./index.enum";
 
-export const useBlogList = () => {
-  return useQuery({
+export const useBlogList = (queryOptions: UseInfiniteQueryOptions) => {
+  return useInfiniteQuery({
     queryKey: [QUERY_KEYS.BLOGLIST],
-    queryFn: blogList,
+    queryFn: ({ pageParam }) => blogList({ pageParam }),
+    getNextPageParam: (lastPage: any, pages) => {
+      return lastPage.data.pagination.next_page;
+    },
     select: (data: any) => {
-      return data.data;
+      return data.pages.flatMap((page: any) => page.data.blogs);
     },
     refetchOnWindowFocus: false,
+    ...queryOptions,
   });
 };

@@ -3,6 +3,7 @@ import { blogsSave } from "./api";
 import { QUERY_KEYS } from "../blogList/index.enum";
 import { useContext } from "react";
 import { AppContext } from "../../../context/ContextProvider";
+import { CATEGORY_QUERY_KEYS } from "../categories/index.enum";
 
 export const useBlogSave = () => {
   const { setNewBlogObject } = useContext(AppContext);
@@ -10,10 +11,10 @@ export const useBlogSave = () => {
   return useMutation({
     mutationFn: blogsSave,
     onSuccess: (data: any) => {
-      setNewBlogObject(null);
       queryClient.refetchQueries({
-        queryKey: [QUERY_KEYS.BLOGLIST],
+        queryKey: [CATEGORY_QUERY_KEYS.TOPICS],
       });
+      setNewBlogObject(null);
       return data;
     },
     onError: (error: any) => {

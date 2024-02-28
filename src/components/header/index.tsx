@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import LogIn from "../login";
 import CustomModal from "../modal";
 import Registration from "../registration";
@@ -13,14 +13,28 @@ import { AppContext } from "../../context/ContextProvider";
 import CustomSearch from "./search";
 import CustomDropDown from "../dropdown";
 
-const Header = () => {
-  const { logSuccess, authUserInfo, handleLogout } = useContext(AppContext);
+const Header: React.FC<{ isHomeFixed: boolean }> = ({ isHomeFixed }) => {
+  const { logSuccess, authUserInfo, handleLogout, scrollY } =
+    useContext(AppContext);
+  const [isHeaderVisible, setHeaderVisible] = useState(true);
+
+  useEffect(() => {
+    setHeaderVisible(scrollY <= 50);
+  }, [scrollY]);
+
+  const headerClassName = `transition-transform duration-400 fixed top-0  ${
+    isHeaderVisible ? "translate-y-0" : "-translate-y-full"
+  } `;
 
   return (
-    <div className="flex items-center justify-between  px-5 xl:space-x-6 space-x-2 w-full h-16 fixed bg-[#FFFFFF] border-b-[1px] z-40">
+    <div
+      className={`${
+        logSuccess ? headerClassName : "fixed top-0"
+      }  flex items-center justify-between px-5 xl:space-x-6 space-x-2 w-full h-16 bg-[#FFFFFF] border-b-[1px] z-50`}
+    >
       <div className="flex items-center space-x-4">
         <Logo />
-        <CustomSearch />
+        {logSuccess ? <CustomSearch /> : null}
       </div>
       {logSuccess ? (
         <div className="flex items-center justify-center xl:space-x-6 space-x-2">

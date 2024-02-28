@@ -4,4 +4,6 @@ export enum PAGE_PATH {
   ADD_BLOG = "/add-blog",
   CATEGORIES = "/category/:topic",
   USERPAGE = "/user-page/:id",
+  BLOGERPAGE = "/blogger/:id",
+  BLOGSFLOW = "/:category",
 }
