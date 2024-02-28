@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useBlogCategory } from "../../../../api/services/categories";
 import { AppContext } from "../../../../context/ContextProvider";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -37,7 +37,6 @@ const BlogsFlowContent = () => {
     hasNextPage: hasNextCategoryBlogsPage,
     isFetching: isCategoryBlogsFetching,
     isFetchingNextPage: isFetchingCategoryBlogsNextPage,
-    isLoading: categoryLoading,
   }: any = useBlogCategory(category ? category : "Travel", {
     enabled: !!category,
   });

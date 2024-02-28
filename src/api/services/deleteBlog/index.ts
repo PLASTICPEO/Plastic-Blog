@@ -10,7 +10,6 @@ export const useBlogDelete = () => {
   return useMutation({
     mutationFn: deleteBlog,
     onSuccess: (data: any) => {
-      const deletedBlogId = data.id; // Adjust this based on your API response
       queryClient.invalidateQueries(
         [INTERESTEDBLOGS_QUERY_KEYS.INTERESTEDBLOGS],
         {

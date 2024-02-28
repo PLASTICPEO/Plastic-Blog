@@ -5,10 +5,9 @@ import { useBloggerInformation } from "../../api/services/blogger";
 
 const UserPage = () => {
   const { id } = useParams();
-  const { data: blogerInformation, refetch: refetchUserBlogs } =
-    useBloggerInformation(id, {
-      enabled: !!id,
-    });
+  const { data: blogerInformation } = useBloggerInformation(id, {
+    enabled: !!id,
+  });
   return (
     <div className="w-full h-full mt-28 flex  mx-auto container grid xl:grid-cols-8  grid-cols-1 gap-4">
       <div className="xl:col-span-5 order-2 xl:order-1">

@@ -1,12 +1,7 @@
 import { useState, useRef, useEffect, useContext } from "react";
 import { LeftOutlined, RightOutlined, PlusOutlined } from "@ant-design/icons";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AppContext } from "../../../../context/ContextProvider";
-
-interface TabItem {
-  key: string;
-  label: string;
-}
 
 const tagsData = [
   { key: "1", label: "Food", path: "/Food" },
@@ -21,7 +16,7 @@ const tagsData = [
 ];
 
 const HomeCategoryTab = () => {
-  const { changeCategory, setChangeCategory, scrollPositionTop, setForYou } =
+  const { setChangeCategory, scrollPositionTop, setForYou } =
     useContext(AppContext);
 
   const [scrollLeft, setScrollLeft] = useState(0);

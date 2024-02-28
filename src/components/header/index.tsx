@@ -13,7 +13,7 @@ import { AppContext } from "../../context/ContextProvider";
 import CustomSearch from "./search";
 import CustomDropDown from "../dropdown";
 
-const Header: React.FC<{ isHomeFixed: boolean }> = ({ isHomeFixed }) => {
+const Header: React.FC<{ isHomeFixed: boolean }> = () => {
   const { logSuccess, authUserInfo, handleLogout, scrollY } =
     useContext(AppContext);
   const [isHeaderVisible, setHeaderVisible] = useState(true);

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { CategoryTypes } from "./index.types";
 
 const CategoryHeader: React.FC<CategoryTypes> = ({

@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import CardSkeleton from "../../components/card/cardSkeleton";
 import CategoryHeader from "./header";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { useCategoryFollowersCount } from "../../api/services/categoryFollowers";
 import { AppContext } from "../../context/ContextProvider";
 import { UpOutlined } from "@ant-design/icons";

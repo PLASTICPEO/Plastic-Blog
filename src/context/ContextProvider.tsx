@@ -4,9 +4,6 @@ import { useBlogSave } from "../api/services/blogSave";
 import { AUTH_TOKEN } from "../api/constants/constants";
 import { setAuthorizationHeader } from "../api/services";
 import { useMeRequest } from "../api/services/me";
-import { useQueryClient } from "react-query";
-
-import { INTERESTEDBLOGS_QUERY_KEYS } from "../api/services/InterestedBlogs/index.enum";
 
 export const AppContext = createContext<ContextTypes>({
   selectedCard: {

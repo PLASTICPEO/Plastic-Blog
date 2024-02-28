@@ -1,12 +1,11 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AppContext } from "../../../context/ContextProvider";
 
 import HomeCategoryTab from "./categoryTab";
 import BlogsFlowContent from "./content";
-import { useParams } from "react-router-dom";
 
 const BlogsFlow = () => {
-  const { changeCategory, logSuccess } = useContext(AppContext);
+  const { logSuccess } = useContext(AppContext);
 
   return (
     <div className="flex flex-col space-y-2 mx-2 ">

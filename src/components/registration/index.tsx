@@ -8,7 +8,7 @@ import {
 import CustomButton, { ButtonSize } from "../button";
 import { useRegistration } from "./hooks/useRegistration";
 import Topics from "../topics";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AppContext } from "../../context/ContextProvider";
 
 const Registration: React.FC = () => {

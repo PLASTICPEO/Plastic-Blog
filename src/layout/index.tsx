@@ -1,7 +1,6 @@
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 import Footer from "../components/footer";
 import Header from "../components/header";
-import HomeCategoryTab from "../components/home/blogsFlow/categoryTab";
 
 const DefaultLayout: React.FC<{ children: ReactNode; isHome?: boolean }> = ({
   children,

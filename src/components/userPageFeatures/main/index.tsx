@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { AppContext } from "../../../context/ContextProvider";
 import UserPageTabs from "../tabs";
 
 const UserMain: React.FC<{ bloggerInfo: any }> = ({ bloggerInfo }) => {

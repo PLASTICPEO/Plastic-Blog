@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { AppContext } from "../../context/ContextProvider";
 import LoadingAnimationComponent from "../loading";
 import { UserIconSize } from "./index.enum";
 

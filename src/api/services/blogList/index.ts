@@ -6,7 +6,7 @@ export const useBlogList = (queryOptions: UseInfiniteQueryOptions) => {
   return useInfiniteQuery({
     queryKey: [QUERY_KEYS.BLOGLIST],
     queryFn: ({ pageParam }) => blogList({ pageParam }),
-    getNextPageParam: (lastPage: any, pages) => {
+    getNextPageParam: (lastPage: any) => {
       return lastPage.data.pagination.next_page;
     },
     select: (data: any) => {

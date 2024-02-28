@@ -1,8 +1,4 @@
-import {
-  UseInfiniteQueryOptions,
-  UseQueryOptions,
-  useInfiniteQuery,
-} from "react-query";
+import { UseInfiniteQueryOptions, useInfiniteQuery } from "react-query";
 import { userBlogs } from "./api";
 import { USER_BLOGS_QUERY_KEYS } from "./index.enum";
 
@@ -13,7 +9,7 @@ export const useUserBlogsList = (
   return useInfiniteQuery({
     queryKey: [USER_BLOGS_QUERY_KEYS.USERBLOGS, userId],
     queryFn: ({ pageParam }: any) => userBlogs({ pageParam, userId }),
-    getNextPageParam: (lastPage: any, pages: any) => {
+    getNextPageParam: (lastPage: any) => {
       return lastPage.data.pagination.next_page;
     },
     select: (data: any) => {

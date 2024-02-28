@@ -1,4 +1,3 @@
-import HeroCover from "../../../assets/img/HeroCover.jpg";
 const Hero = () => {
   return (
     <div className="flex items-center justify-center w-full h-72 mt-4 rounded-md">

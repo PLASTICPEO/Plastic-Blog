@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import CardSkeleton from "../../../card/cardSkeleton";
 import { useUserBlogsList } from "../../../../api/services/userBlogs";
 import { useParams } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { AppContext } from "../../../../context/ContextProvider";
 
@@ -12,9 +12,6 @@ const UserBlogs = () => {
   const { id } = useParams();
   const {
     data: userBlogs,
-    error,
-    status,
-    refetch,
     fetchNextPage,
     hasNextPage,
     isFetching,

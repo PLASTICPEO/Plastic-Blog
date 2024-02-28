@@ -6,20 +6,10 @@ import { useBlogList } from "../../../api/services/blogList";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import { AppContext } from "../../../context/ContextProvider";
-import InfiniteScroll from "react-infinite-scroll-component";
 
 const CustomSearch: React.FC = () => {
   const [result, setResult] = useState<any>();
-  const {
-    data: list,
-    error,
-    status,
-    refetch,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-    isFetchingNextPage,
-  }: any = useBlogList();
+  const { data: list }: any = useBlogList({ enabled: !!result });
   const { scrollY } = useContext(AppContext);
 
   const onSearch: SearchProps["onSearch"] = (value: any) => {

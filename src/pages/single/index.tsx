@@ -7,12 +7,11 @@ import { useBlogUnLike } from "../../api/services/unlike";
 import { Link, useParams } from "react-router-dom";
 import { useBlogSingle } from "../../api/services/blogSingle";
 import LoadingAnimationComponent from "../../components/loading";
-import Thumb from "../../assets/img/thumbnile.gif";
 import dayjs from "dayjs";
 
 const SingleBlog = () => {
   const { id } = useParams();
-  const { selectedCard, logSuccess } = useContext(AppContext);
+  const { logSuccess } = useContext(AppContext);
   const { mutate: blogLike } = useBlogLike();
   const { mutate: blogUnLike } = useBlogUnLike();
   const { data: blog, isLoading }: any = useBlogSingle(id, { enabled: !!id });
