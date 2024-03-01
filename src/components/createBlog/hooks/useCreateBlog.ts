@@ -44,6 +44,10 @@ export const useCreateBlog = () => {
       value: "9",
       label: "Art and design",
     },
+    {
+      value: "10",
+      label: "Cinema",
+    },
   ];
 
   const normFile = (e: any) => {
@@ -54,9 +58,10 @@ export const useCreateBlog = () => {
   };
 
   const handleChange = (selectedValues: any) => {
-    const selectedCategories = options.filter((item: any) =>
-      selectedValues.includes(item.value)
+    const selectedCategories = options.filter(
+      (item: any) => selectedValues === item.value
     );
+
     const selectedCategoriesString = selectedCategories
       .map((category) => category.label)
       .join(", ");

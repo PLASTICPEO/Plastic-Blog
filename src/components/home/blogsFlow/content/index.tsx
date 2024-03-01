@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { useBlogCategory } from "../../../../api/services/categories";
 import { AppContext } from "../../../../context/ContextProvider";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -40,10 +40,6 @@ const BlogsFlowContent = () => {
   }: any = useBlogCategory(category ? category : "Travel", {
     enabled: !!category,
   });
-
-  useEffect(() => {
-    console.log(interestedBlogsList, "კომპონენტში");
-  }, [interestedBlogsList]);
 
   const handleAllBlogsScroll = () => {
     if (

@@ -8,15 +8,23 @@ import { Link, useParams } from "react-router-dom";
 import { useBlogSingle } from "../../api/services/blogSingle";
 import LoadingAnimationComponent from "../../components/loading";
 import dayjs from "dayjs";
+import { useIsLiked } from "../../api/services/isLiked";
 
 const SingleBlog = () => {
   const { id } = useParams();
+  const { data: Isliked }: any = useIsLiked(id, { enabled: !!id });
   const { logSuccess } = useContext(AppContext);
   const { mutate: blogLike } = useBlogLike();
   const { mutate: blogUnLike } = useBlogUnLike();
   const { data: blog, isLoading }: any = useBlogSingle(id, { enabled: !!id });
-
   const [hitRecommend, setHitRecommend] = useState(false);
+
+  useEffect(() => {
+    console.log(Isliked);
+    if (Isliked) {
+      setHitRecommend(true);
+    }
+  }, [Isliked]);
 
   const recommend = () => {
     if (!hitRecommend) {
@@ -27,10 +35,6 @@ const SingleBlog = () => {
       setHitRecommend(!hitRecommend);
     }
   };
-
-  useEffect(() => {
-    console.log(blog?.likedBy[0], "არჩეული ბლოგი");
-  }, [blog]);
 
   return (
     <div>
