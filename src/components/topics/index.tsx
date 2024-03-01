@@ -12,6 +12,7 @@ const tagsData = [
   "Lifestyle",
   "Music",
   "Art and design",
+  "Cinema",
 ];
 
 const Topics: React.FC<{

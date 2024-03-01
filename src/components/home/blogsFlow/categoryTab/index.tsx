@@ -13,6 +13,7 @@ const tagsData = [
   { key: "7", label: "Lifestyle", path: "/Lifestyle" },
   { key: "8", label: "Music", path: "/Music" },
   { key: "9", label: "Art and design", path: "/Art and design" },
+  { key: "10", label: "Cinema", path: "/Cinema" },
 ];
 
 const HomeCategoryTab = () => {
