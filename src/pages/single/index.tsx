@@ -20,19 +20,20 @@ const SingleBlog = () => {
   const [hitRecommend, setHitRecommend] = useState(false);
 
   useEffect(() => {
-    console.log(Isliked);
     if (Isliked) {
       setHitRecommend(true);
+    } else {
+      setHitRecommend(false);
     }
   }, [Isliked]);
 
   const recommend = () => {
     if (!hitRecommend) {
       blogLike(id);
-      setHitRecommend(!hitRecommend);
+      setHitRecommend(true);
     } else {
       blogUnLike(id);
-      setHitRecommend(!hitRecommend);
+      setHitRecommend(false);
     }
   };
 
@@ -50,7 +51,7 @@ const SingleBlog = () => {
               <div>
                 {logSuccess ? (
                   <div onClick={() => recommend()}>
-                    {hitRecommend ? (
+                    {hitRecommend && Isliked ? (
                       <LikeOutlined
                         style={{
                           fontSize: "26px",

@@ -9,8 +9,6 @@ export const useIsLiked = (id: any, queryOptions: UseQueryOptions) => {
     select: (data: any) => {
       return data.data.isLiked;
     },
-    refetchOnWindowFocus: false,
-    staleTime: Infinity,
     ...queryOptions,
   });
 };
