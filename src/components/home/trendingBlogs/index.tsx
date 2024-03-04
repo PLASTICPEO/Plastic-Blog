@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import TrendingCard from "./card";
 import { RiseOutlined } from "@ant-design/icons";
 import { AppContext } from "../../../context/ContextProvider";

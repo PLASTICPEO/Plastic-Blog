@@ -1,6 +1,3 @@
-import { useContext, useEffect } from "react";
-import { useTrendingBlogData } from "../../../../api/services/trendingBlogs";
-import { AppContext } from "../../../../context/ContextProvider";
 import { TrendingCardTypes } from "./index.types";
 
 const TrendingCard: React.FC<TrendingCardTypes> = ({
