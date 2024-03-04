@@ -1,7 +1,16 @@
+import { useContext, useEffect } from "react";
 import TrendingCard from "./card";
 import { RiseOutlined } from "@ant-design/icons";
+import { AppContext } from "../../../context/ContextProvider";
+import { useTrendingBlogData } from "../../../api/services/trendingBlogs";
+import dayjs from "dayjs";
 
 const TrendingBlogsDesk = () => {
+  const { logSuccess } = useContext(AppContext);
+  const { data: trending }: any = useTrendingBlogData({
+    enabled: !logSuccess,
+  });
+
   return (
     <div>
       <div className="flex items-center space-x-2 m-2">
@@ -11,12 +20,19 @@ const TrendingBlogsDesk = () => {
         </p>
       </div>
       <div className="w-full xl:h-72  grid xl:grid-rows-2 xl:grid-flow-col grid-col-1 gap-4 p-2 mb-4">
-        <TrendingCard />
-        <TrendingCard />
-        <TrendingCard />
-        <TrendingCard />
-        <TrendingCard />
-        <TrendingCard />
+        {trending?.map((item: any, index: any) => {
+          const sequenceNumber = index + 1;
+          return (
+            <div key={index}>
+              <TrendingCard
+                sequence={sequenceNumber}
+                username={item.creator.username}
+                title={item.title}
+                date={dayjs(item.createdAt).format("MMMM D, YYYY")}
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );

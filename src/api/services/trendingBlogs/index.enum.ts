@@ -1,0 +1,7 @@
+export enum ENDPOINTS {
+  TRENDINGBLOGS = "/api/blog/top",
+}
+
+export enum TRENDINGBLOGS_QUERY_KEYS {
+  TRENDINGBLOGS = "TRENDINGBLOGS",
+}
