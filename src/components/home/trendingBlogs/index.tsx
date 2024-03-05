@@ -20,7 +20,7 @@ const TrendingBlogsDesk = () => {
         </p>
       </div>
       <div className="w-full xl:h-72  grid xl:grid-rows-2 xl:grid-flow-col grid-col-1 gap-4 p-2 mb-4">
-        {trending?.map((item: any, index: any) => {
+        {trending?.topBlogs.map((item: any, index: any) => {
           const sequenceNumber = index + 1;
           return (
             <div key={index}>
